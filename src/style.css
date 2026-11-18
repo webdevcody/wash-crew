@@ -1,0 +1,102 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #111;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #fff;
+}
+
+canvas { display: block; }
+
+.hidden { display: none !important; }
+
+#crosshair {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  pointer-events: none;
+}
+#crosshair::before,
+#crosshair::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 2px #000;
+}
+#crosshair::before { left: 8px; top: 0; width: 2px; height: 18px; }
+#crosshair::after { top: 8px; left: 0; width: 18px; height: 2px; }
+
+#stats {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 8px;
+  font-size: 15px;
+  min-width: 200px;
+  pointer-events: none;
+}
+#progress-bar {
+  margin: 8px 0 6px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+#progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #39c4ff, #7cf3ff);
+  transition: width 0.1s linear;
+}
+#timer { opacity: 0.7; font-variant-numeric: tabular-nums; }
+
+#overlay, #win {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 14, 20, 0.7);
+  backdrop-filter: blur(3px);
+}
+.panel {
+  text-align: center;
+  padding: 32px 40px;
+  background: rgba(20, 26, 34, 0.9);
+  border: 1px solid rgba(124, 243, 255, 0.25);
+  border-radius: 14px;
+  max-width: 420px;
+}
+.panel h1 {
+  margin: 0 0 6px;
+  letter-spacing: 4px;
+  color: #7cf3ff;
+}
+.sub { margin: 0 0 18px; opacity: 0.85; }
+.controls {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 26px;
+  border: none;
+  border-radius: 8px;
+  background: #39c4ff;
+  color: #04121a;
+  cursor: pointer;
+}
+button:hover { background: #7cf3ff; }
+#win-time { font-size: 18px; margin: 0 0 20px; }
