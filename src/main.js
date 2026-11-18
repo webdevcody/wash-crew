@@ -104,8 +104,11 @@ const aimDir = new THREE.Vector3();
 const tmpDir = new THREE.Vector3();
 const aimPoint = new THREE.Vector3();
 
+let sprayingStain = false; // is the jet currently hitting dirt? (used by audio)
+
 function spray(dt) {
   camera.getWorldDirection(aimDir);
+  sprayingStain = false;
   let anyHit = null;
 
   for (let i = 0; i < RAYS_PER_FRAME; i++) {
@@ -125,6 +128,7 @@ function spray(dt) {
 
     const stain = hit.object.userData.stain;
     if (stain && hit.uv) {
+      sprayingStain = true;
       const falloff = 1 - hit.distance / RANGE;           // weaker further away
       const strength = Math.min(0.9, 8 * dt * falloff);
       const radius = 0.22 + hit.distance * 0.04;           // jet widens with distance
@@ -171,7 +175,7 @@ function frame() {
     if (state.firing) spray(dt);
   }
   washer.update(dt, state.firing && state.playing);
-  audio.setSpraying(state.firing && state.playing);
+  audio.setSpraying(state.firing && state.playing, sprayingStain);
   for (const s of stains) s.update(dt);
   updateHud();
 
@@ -181,4 +185,4 @@ function frame() {
 frame();
 
 // Handy for poking at the game from the console (and for automated tests).
-window.__washCrew = { state, stains, player, camera, controls };
+window.__washCrew = { state, stains, player, camera, controls, audio };
