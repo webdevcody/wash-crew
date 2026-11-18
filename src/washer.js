@@ -38,6 +38,10 @@ export class PressureWasher {
       }),
     );
     this.points.frustumCulled = false;
+    // Stains and water are both transparent, and three.js sorts transparent objects
+    // by their origin. The Points origin sits at the world center, so the stains were
+    // often drawn after the water and painted over it. Always draw the water last.
+    this.points.renderOrder = 10;
     scene.add(this.points);
 
     this.emitCarry = 0;
@@ -92,7 +96,7 @@ export class PressureWasher {
       this.splashCarry -= 1;
       const s = 2 + Math.random() * 3;
       this.spawn(
-        point.x + n.x * 0.05, point.y + n.y * 0.05, point.z + n.z * 0.05,
+        point.x + n.x * 0.1, point.y + n.y * 0.1, point.z + n.z * 0.1,
         n.x * s + (Math.random() - 0.5) * 4,
         n.y * s + (Math.random() - 0.5) * 4 + 1,
         n.z * s + (Math.random() - 0.5) * 4,
