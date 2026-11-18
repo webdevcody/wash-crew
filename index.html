@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wash Crew</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="hud" class="hidden">
+      <div id="crosshair"></div>
+      <div id="stats">
+        <div id="stains-left">Stains left: 0</div>
+        <div id="progress-bar"><div id="progress-fill"></div></div>
+        <div id="timer">0.0s</div>
+      </div>
+    </div>
+
+    <div id="overlay">
+      <div class="panel">
+        <h1>WASH CREW</h1>
+        <p class="sub">Blast every stain off the walls to win.</p>
+        <ul class="controls">
+          <li><b>W A S D</b> move</li>
+          <li><b>Mouse</b> look</li>
+          <li><b>Hold left click</b> spray</li>
+          <li><b>Space</b> jump &nbsp;·&nbsp; <b>Shift</b> sprint</li>
+          <li><b>Esc</b> pause</li>
+        </ul>
+        <button id="play">Click to play</button>
+      </div>
+    </div>
+
+    <div id="win" class="hidden">
+      <div class="panel">
+        <h1>SPOTLESS!</h1>
+        <p class="sub">You cleaned every stain. You win!</p>
+        <p id="win-time"></p>
+        <button id="again">Play again</button>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
